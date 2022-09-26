@@ -32,7 +32,7 @@ Step 2. Add the dependency
     </repositories>
     
     
-    Step 2. Add the dependency
+  Step 2. Add the dependency
 
       <dependency>
           <groupId>com.github.GTIPL-NET</groupId>
