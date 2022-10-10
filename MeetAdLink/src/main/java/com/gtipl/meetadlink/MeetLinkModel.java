@@ -27,7 +27,7 @@ public class MeetLinkModel {
     RelativeLayout layout_main;
     WebView webView;
 
-    MeetLinkModel(Context context, WindowManager mWManager) {
+   public MeetLinkModel(Context context, WindowManager mWManager, String url_link) {
         this.context_float = context;
          mWindowManager = mWManager;
          layout_main = new RelativeLayout(this.context_float);
@@ -72,7 +72,7 @@ public class MeetLinkModel {
                 ViewGroup.LayoutParams.MATCH_PARENT);
         lay.setMargins(5,5,5,5);
         webView.setLayoutParams(lay);
-        webView.loadUrl("https://vbuywith.com/Customer/widget/20");
+        webView.loadUrl(url_link);
         layout_main.removeView(webView);
         layout_main.addView(webView);
 
@@ -170,11 +170,11 @@ public class MeetLinkModel {
         });
     }
 
-    void showPopView() {
+   public void showPopView() {
         mWindowManager.addView(layout_main, layoutParams);
     }
 
-    void hidePopView() {
+   public void hidePopView() {
         mWindowManager.removeView(layout_main);
     }
 }
