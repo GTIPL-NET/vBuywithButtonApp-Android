@@ -17,6 +17,8 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.net.URL;
+
 public class MeetLinkModel {
 
     Context context_float;
@@ -27,7 +29,7 @@ public class MeetLinkModel {
     RelativeLayout layout_main;
     WebView webView;
 
-   public MeetLinkModel(Context context, WindowManager mWManager, String url_link) {
+   public MeetLinkModel(Context context, WindowManager mWManager, String link) {
         this.context_float = context;
          mWindowManager = mWManager;
          layout_main = new RelativeLayout(this.context_float);
@@ -72,7 +74,7 @@ public class MeetLinkModel {
                 ViewGroup.LayoutParams.MATCH_PARENT);
         lay.setMargins(5,5,5,5);
         webView.setLayoutParams(lay);
-        webView.loadUrl(url_link);
+        webView.loadUrl(link);
         layout_main.removeView(webView);
         layout_main.addView(webView);
 
@@ -130,7 +132,23 @@ public class MeetLinkModel {
                     context_float.startActivity(intent);
 
                     try{
+                        layoutParams = new WindowManager.LayoutParams(
+                                width,
+                                height,
+                                layout_parms,
+                                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+                                        WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+                                PixelFormat.TRANSLUCENT);
+
+                        //Specify the view position
+                        layoutParams.gravity = Gravity.BOTTOM|Gravity.RIGHT;
+                        layoutParams.y = 20;
+                        layoutParams.x = 5;
+                        //Add the view to the window
+                        webView.loadUrl(link);
                         mWindowManager.removeView(layout_main);
+                        mWindowManager.addView(layout_main, layoutParams);
+
                     }catch (Exception e){
                     }
                     return true;
